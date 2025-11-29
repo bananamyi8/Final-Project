@@ -1,0 +1,64 @@
+﻿@using OnlineVotingApplication.Areas.Identity.Data
+
+@model OnlineVotingApplication.ViewModel.ConvertApplicationUser
+
+@{
+    ViewData["Title"] = "ViewVoters";
+}
+
+<h1>ViewVoters</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsVoter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ApplicationUsers)
+{
+    <tr>
+        <td>@item.Email</td>
+        <td>@item.Name</td>
+        <td>@item.Mobile</td>
+        <td>@item.City</td>
+        <td>@item.BirthDate</td>
+        <td>@item.Address</td>
+        <td>@item.IsVoter</td>
+        <td>@(item.ProfileImage ?? "No image")</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+</tbody>
+</table>
